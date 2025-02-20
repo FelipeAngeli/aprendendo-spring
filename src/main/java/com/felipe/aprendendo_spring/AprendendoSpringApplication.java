@@ -8,7 +8,7 @@ public class AprendendoSpringApplication {
 
 	public static void main(String[] args) {
 
-//		SpringApplication.run(AprendendoSpringApplication.class, args);
+		SpringApplication.run(AprendendoSpringApplication.class, args);
 
 
 	}
