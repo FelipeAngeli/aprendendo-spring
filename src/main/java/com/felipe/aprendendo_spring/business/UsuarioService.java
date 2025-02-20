@@ -3,8 +3,10 @@ package com.felipe.aprendendo_spring.business;
 import com.felipe.aprendendo_spring.infrastructure.entity.Usuario;
 import com.felipe.aprendendo_spring.infrastructure.exceptions.ConflitExceptions;
 import com.felipe.aprendendo_spring.infrastructure.repository.UsuarioRepository;
+import io.jsonwebtoken.security.Password;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,11 +15,12 @@ import org.springframework.stereotype.Service;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public  Usuario salvaUsuario(Usuario usuario){
       try {
             emailExiste(usuario.getEmail());
-
+            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
           return usuarioRepository.save(usuario);
       } catch (ConflitExceptions e) {
         throw new ConflitExceptions("Email já cadastrado", e.getCause());
