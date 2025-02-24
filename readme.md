@@ -1,7 +1,3 @@
-FelipeAngeli: Crie um readme detalhado para esse projeto java srping jwt login
-
-Workspace: Coletando informações do workspace# Aprendendo Spring
-
 Este é um projeto de demonstração para aprender a usar Spring Boot com autenticação JWT. O projeto inclui funcionalidades básicas de CRUD para usuários, autenticação e autorização usando JWT.
 
 ## Estrutura do Projeto
