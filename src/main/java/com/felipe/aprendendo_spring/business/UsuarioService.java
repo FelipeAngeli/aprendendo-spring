@@ -2,6 +2,7 @@ package com.felipe.aprendendo_spring.business;
 
 import com.felipe.aprendendo_spring.infrastructure.entity.Usuario;
 import com.felipe.aprendendo_spring.infrastructure.exceptions.ConflitExceptions;
+import com.felipe.aprendendo_spring.infrastructure.exceptions.ResourceNotFoundException;
 import com.felipe.aprendendo_spring.infrastructure.repository.UsuarioRepository;
 import io.jsonwebtoken.security.Password;
 import lombok.RequiredArgsConstructor;
@@ -40,5 +41,14 @@ public class UsuarioService {
 
     public  boolean verificaEmailExistente(String email){
         return usuarioRepository.existsByEmail(email);
+    }
+
+    public Usuario buscarUsuarioPorEmail(String email){
+        return usuarioRepository.findByEmail(email).orElseThrow(
+                () -> new ResourceNotFoundException("Email não encontrado" + email));
+    }
+
+    public void deletaUsuarioPorEmail(String email){
+        usuarioRepository.deleteByEmail(email);
     }
 }
